@@ -12,7 +12,7 @@ public class App {
         double distance;
 
         try (BufferedReader reader = new BufferedReader(
-                new FileReader("/Users/elianablankstein/Physics/src/hi.text"))) {
+            new FileReader("/Users/elianablankstein/Physics/src/hi.text"))) {
             String line = reader.readLine();
             String radius = reader.readLine();
 

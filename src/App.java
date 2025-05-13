@@ -6,20 +6,23 @@ import java.util.ArrayList;
 import edu.princeton.cs.algs4.StdDraw;
 
 public class App {
+
+    static ArrayList<Planet> planets = new ArrayList<>();
+    static double Gravity = 6.67E-11;
     public static void main(String[] args) throws Exception {
 
         // Step 1. Parse command-line arguments.
 
-        double Gravity = 6.67E-11;
+        
         double distance;
 
         try (BufferedReader reader = new BufferedReader(
             new FileReader("/Users/elianablankstein/Physics/src/hi.text"))) {
             String line = reader.readLine();
             String radius = reader.readLine();
+            
 
             int count = Integer.parseInt(line);
-            ArrayList<Planet> planets = new ArrayList<>();
 
             for (int i = 0; i < count; i++) {
                 String hi = reader.readLine();
@@ -30,6 +33,8 @@ public class App {
                 double yvel = Double.parseDouble(parts[3]);
                 double mass = Double.parseDouble(parts[4]);
                 String name = parts[5];
+                
+                
                 
                 planets.add(new Planet(xpos, ypos, xvel, yvel, mass, name));
 
@@ -44,16 +49,55 @@ public class App {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-        StdDraw.setCanvasSize(600, 600);
-        StdDraw.setPenColor();
-        StdDraw.setXscale(-12,12);
-        StdDraw.setYscale(-12,12);
-       // StdDraw.square(0, 0, 5);
-       StdDraw.setPenRadius(0.001);
-        StdDraw.line(0, -50, 0, 50);
-        StdDraw.line(-50, 0, 50, 0);
-        StdDraw.show();
+    
+        
+        public static void draw(){
+            StdDraw.setCanvasSize(600, 600);
+            StdDraw.setPenColor();
+            StdDraw.setXscale(-12,12);
+            StdDraw.setYscale(-12,12);
+            StdDraw.setPenRadius(0.001);
+            StdDraw.line(0, -50, 0, 50);
+            StdDraw.line(-50, 0, 50, 0);
+            StdDraw.show();  
+        }
+
+        double calcDist(Planet p){
+
+            double xPosSub = 0;
+            double yPosSub = 0;
+            double dist = 0;
+            
+            for (int i = 0; i < planets.size(); i++){
+                for (int j = 0; j < planets.size(); j++){
+                    if (i!= j){
+                         xPosSub = planets.get(i).getXPos() - planets.get(j).getXPos();
+                         yPosSub = planets.get(i).getYPos() - planets.get(j).getYPos();
+                         dist = Math.sqrt(xPosSub*xPosSub + yPosSub*yPosSub);
+                        
+                    }
+
+
+
+            }
+
+    
+        }
+        return dist;
+
+
+        }
+
+        double calcForce(Planet p){
+            
+
+            double Force = Gravity* p.getMass()* x.getMass();
+
+            
+        }
+        
         // Step 2. Read the universe from standard input.
 
         // Step 3. Initialize standard drawing.
@@ -69,4 +113,5 @@ public class App {
         // Step 6. Print universe to standard output
 
     }
-}
+
+

@@ -20,4 +20,30 @@ public class Planet {
         
 
     }
+
+    public double getXPos(){
+        return xpos;
+    }
+
+    public double getYPos(){
+        return ypos;
+    }
+
+    public double getXVel(){
+        return xvel;
+    }
+
+    public double getYVel(){
+        return yvel;
+    }
+
+    public double getMass(){
+        return mass;
+    }
+
+    public String getName(){
+        return name;
+    }
+
 }
+

@@ -15,4 +15,9 @@ public class Planet {
         this.mass = mass;
         this.name = name;
     }
+
+    double calcXForce(Planet p){
+        
+
+    }
 }

@@ -3,6 +3,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import edu.princeton.cs.algs4.StdDraw;
+
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -43,6 +45,15 @@ public class App {
             e.printStackTrace();
         }
 
+        StdDraw.setCanvasSize(600, 600);
+        StdDraw.setPenColor();
+        StdDraw.setXscale(-12,12);
+        StdDraw.setYscale(-12,12);
+       // StdDraw.square(0, 0, 5);
+       StdDraw.setPenRadius(0.001);
+        StdDraw.line(0, -50, 0, 50);
+        StdDraw.line(-50, 0, 50, 0);
+        StdDraw.show();
         // Step 2. Read the universe from standard input.
 
         // Step 3. Initialize standard drawing.

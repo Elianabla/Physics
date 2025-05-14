@@ -6,7 +6,6 @@ public class Planet {
     double mass;
     String name;
 
-
     public Planet(double xpos, double ypos, double xvel, double yvel, double mass, String name){
         this.xpos=xpos;
         this.ypos = ypos;
@@ -14,11 +13,7 @@ public class Planet {
         this.yvel = yvel;
         this.mass = mass;
         this.name = name;
-    }
-
-    double calcXForce(Planet p){
-        
-
+       
     }
 
     public double getXPos(){

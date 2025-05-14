@@ -13,7 +13,6 @@ public class App {
 
         // Step 1. Parse command-line arguments.
 
-        
         double distance;
 
         try (BufferedReader reader = new BufferedReader(
@@ -52,7 +51,27 @@ public class App {
     }
 
     
+     double sumOfXForce = 0; 
+     double sumOfYForce = 0;
+     double sumOf2Force = 0;  
+
+        public  double loopAddForce(){
+        for(int i = 0; i < planets.size(); i++ ){
+            for (int j = 0; j < planets.size(); j++){
+                if (i!=j) {
+                   sumOfXForce +=  calcXForce(planets.get(i), planets.get(j));
+                   sumOfYForce += calcYForce(planets.get(i), planets.get(j));
+                   sumOf2Force += calcForceBetween2(planets.get(i), planets.get(j));
+                   
+                }
+            }
+            
+        }
         
+
+    }
+
+
         public static void draw(){
             StdDraw.setCanvasSize(600, 600);
             StdDraw.setPenColor();
@@ -64,39 +83,39 @@ public class App {
             StdDraw.show();  
         }
 
-        double calcDist(Planet p){
+        double calcDist(Planet p1, Planet p2){
 
-            double xPosSub = 0;
-            double yPosSub = 0;
-            double dist = 0;
-            
-            for (int i = 0; i < planets.size(); i++){
-                for (int j = 0; j < planets.size(); j++){
-                    if (i!= j){
-                         xPosSub = planets.get(i).getXPos() - planets.get(j).getXPos();
-                         yPosSub = planets.get(i).getYPos() - planets.get(j).getYPos();
-                         dist = Math.sqrt(xPosSub*xPosSub + yPosSub*yPosSub);
-                        
-                    }
-
-
+            double dx = p1.getXPos()-p2.getXPos();
+            double dy = p1.getYPos()-p2.getYPos();
+            return Math.abs(dx*dx + dy*dy);
 
             }
 
+        double calcForceBetween2(Planet p1, Planet p2){
+            double dist = calcDist(p1, p2);
+            double force = (Gravity*p1.getMass()*p2.getMass())/(dist*dist);
+            return force;
+        }
     
+        
+        double calcXForce(Planet p1, Planet p2){
+            double dist = calcDist(p1, p2);
+            double force = calcForceBetween2(p1, p2);
+            double xForce = (force*(p1.getXPos()-p2.getXPos()))/dist;
+
+            return xForce;
         }
-        return dist;
 
+        double calcYForce(Planet p1, Planet p2){
+            double dist = calcDist(p1, p2);
+            double force = calcForceBetween2(p1, p2);
+            double yForce = (force*(p1.getYPos()-p2.getYPos()))/dist;
 
+            return yForce;
         }
 
-        double calcForce(Planet p){
-            
-
-            double Force = Gravity* p.getMass()* x.getMass();
-
-            
-        }
+      
+   
         
         // Step 2. Read the universe from standard input.
 

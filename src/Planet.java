@@ -5,6 +5,8 @@ public class Planet {
     double yvel;
     double mass;
     String name;
+    double fx;
+    double fy;
 
     public Planet(double xpos, double ypos, double xvel, double yvel, double mass, String name){
         this.xpos=xpos;
@@ -13,6 +15,9 @@ public class Planet {
         this.yvel = yvel;
         this.mass = mass;
         this.name = name;
+        this.fx = 0;
+        this.fy = 0;
+
        
     }
 
@@ -38,6 +43,14 @@ public class Planet {
 
     public String getName(){
         return name;
+    }
+
+    public double getFx() {
+        return fx;
+    }
+    
+    public double getFy() {
+        return fy;
     }
 
 }

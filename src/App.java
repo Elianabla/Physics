@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -48,33 +49,33 @@ public class App {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    draw();
     }
 
     
-     double sumOfXForce = 0; 
-     double sumOfYForce = 0;
-     double sumOf2Force = 0;  
-
-        public  double loopAddForce(){
+        public  void loopAddForce(){
         for(int i = 0; i < planets.size(); i++ ){
+            Planet p1 = planets.get(i);
+            double netFx = 0;
+            double netFy = 0;
             for (int j = 0; j < planets.size(); j++){
                 if (i!=j) {
-                   sumOfXForce +=  calcXForce(planets.get(i), planets.get(j));
-                   sumOfYForce += calcYForce(planets.get(i), planets.get(j));
-                   sumOf2Force += calcForceBetween2(planets.get(i), planets.get(j));
-                   
+                Planet p2 = planets.get(j);
+                   netFx +=  calcXForce(p1, p2);
+                   netFy += calcYForce(p1, p2);
                 }
             }
-            
+            p1.fx = netFx;
+            p1.fy = netFy;
         }
-        
-
+       
     }
 
 
         public static void draw(){
             StdDraw.setCanvasSize(600, 600);
-            StdDraw.setPenColor();
+            StdDraw.setPenColor(Color.BLACK);
             StdDraw.setXscale(-12,12);
             StdDraw.setYscale(-12,12);
             StdDraw.setPenRadius(0.001);

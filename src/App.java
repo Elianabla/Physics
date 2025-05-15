@@ -115,7 +115,15 @@ public class App {
             return yForce;
         }
 
+        double calcXAc (Planet p1, Planet p2){
+            double ax = p1.getFx()/p1.getMass();
+            return ax;
+        }
       
+        double calcYAc (Planet p1, Planet p2){
+            double ay = p1.getFx()/p1.getMass();
+            return ay;
+        }
    
         
         // Step 2. Read the universe from standard input.

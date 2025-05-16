@@ -81,6 +81,7 @@ public class App {
             StdDraw.setPenRadius(0.001);
             StdDraw.line(0, -50, 0, 50);
             StdDraw.line(-50, 0, 50, 0);
+           StdDraw.circle(0, 0, 2);
             StdDraw.show();  
         }
 
@@ -88,7 +89,7 @@ public class App {
 
             double dx = p1.getXPos()-p2.getXPos();
             double dy = p1.getYPos()-p2.getYPos();
-            return Math.abs(dx*dx + dy*dy);
+            return Math.sqrt(dx*dx + dy*dy);
 
             }
 
@@ -115,14 +116,12 @@ public class App {
             return yForce;
         }
 
-        double calcXAc (Planet p1, Planet p2){
-            double ax = p1.getFx()/p1.getMass();
-            return ax;
+        double calcXAc(Planet p){
+            return p.getFx() / p.getMass();
         }
-      
-        double calcYAc (Planet p1, Planet p2){
-            double ay = p1.getFx()/p1.getMass();
-            return ay;
+        
+        double calcYAc(Planet p){
+            return p.getFy() / p.getMass();
         }
    
         

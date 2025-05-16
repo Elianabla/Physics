@@ -10,11 +10,14 @@ public class App {
 
     static ArrayList<Planet> planets = new ArrayList<>();
     static double Gravity = 6.67E-11;
+    static double Time = 100;
+    static double TotalTime= 10E100;
     public static void main(String[] args) throws Exception {
 
         // Step 1. Parse command-line arguments.
 
         double distance;
+    
 
         try (BufferedReader reader = new BufferedReader(
             new FileReader("/Users/elianablankstein/Physics/src/hi.text"))) {
@@ -69,9 +72,37 @@ public class App {
             p1.fx = netFx;
             p1.fy = netFy;
         }
-       
     }
 
+
+        public void simulateTime(double totalTime, double Time){
+            for (int i = 0; i < totalTime; i+= Time){
+                loopAddForce();
+                for (int j = 0; j < planets.size(); j++){
+                    Planet p = planets.get(j);
+                    double ax = p.fx/ p.mass;
+                    double ay = p.fy/p.mass;
+
+                    p.xvel += ax * Time;
+                    p.yvel += ay * Time;
+
+                    p.xpos += p.xvel * Time;
+                    p.ypos += p.yvel * Time;
+
+                    StdDraw.point(p.xpos, p.ypos);
+                }
+                StdDraw.clear();
+                for (int k = 0; k < planets.size(); k++){
+                    Planet j = planets.get(k);
+                    StdDraw.picture(j.getXPos(), j.getYPos(), "earth.png");
+
+                }
+      
+            }
+            draw();
+
+            
+        }
 
         public static void draw(){
             StdDraw.setCanvasSize(600, 600);
@@ -82,7 +113,9 @@ public class App {
             StdDraw.line(0, -50, 0, 50);
             StdDraw.line(-50, 0, 50, 0);
            StdDraw.circle(0, 0, 2);
+          
             StdDraw.show();  
+
         }
 
         double calcDist(Planet p1, Planet p2){
@@ -124,6 +157,9 @@ public class App {
             return p.getFy() / p.getMass();
         }
    
+       
+        
+
         
         // Step 2. Read the universe from standard input.
 
@@ -140,5 +176,6 @@ public class App {
         // Step 6. Print universe to standard output
 
     }
+
 
 
